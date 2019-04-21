@@ -41,7 +41,9 @@ class Customer
     end
 
     def delete
-
+      sql = "DELETE FROM customers WHERE id = $1"
+      values = [@id]
+      SqlRunner.run(sql, values)
     end
 
     def films()
@@ -56,11 +58,16 @@ class Customer
     end
 
 
-
-
     def self.all()
       sql = "SELECT * FROM customers"
       customers = SqlRunner.run(sql)
+      return Customer.map_items(customers)
+    end
+
+    def self.find(id)
+      sql = "SELECT * FROM customers WHERE id = $1"
+      values = [id]
+      customers = SqlRunner.run(sql, values)
       return Customer.map_items(customers)
     end
 
