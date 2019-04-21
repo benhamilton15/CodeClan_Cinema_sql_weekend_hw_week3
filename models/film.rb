@@ -58,6 +58,10 @@ class Film
       return results
     end
 
+    def num_of_customers()
+      return customers().length
+    end
+
     def self.all()
       sql = "SELECT * FROM films"
       films = SqlRunner.run(sql)

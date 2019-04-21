@@ -50,11 +50,15 @@ class Customer
       sql = "SELECT films.* FROM films
       INNER JOIN tickets
       ON tickets.film_id = films.id
-      WHERE tickets.film_id = $1;"
+      WHERE tickets.customer_id = $1;"
       values = [@id]
       films = SqlRunner.run(sql,values)
       results = films.map { |film| Film.new(film)  }
       return results
+    end
+
+    def num_of_tickets()
+      return films().length
     end
 
 
