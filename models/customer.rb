@@ -82,6 +82,8 @@ class Customer
             }
           )
           bought_ticket.save()
+        else
+          return "cannot afford ticket"
         end
       end
 
