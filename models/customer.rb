@@ -1,4 +1,6 @@
 require_relative('../db/sql_runner')
+require_relative('./film')
+require_relative('./ticket')
 
 class Customer
 
@@ -61,6 +63,19 @@ class Customer
       return films().length
     end
 
+    def buy_ticket(film)
+      if @fund >= film.price
+        @fund -= film.price
+        bought_ticket = Ticket.new(
+          {
+            'customer_id' => @id ,
+            'film_id' => film.id
+          }
+        )
+        bought_ticket.save()
+      end
+    end
+
 
     def self.all()
       sql = "SELECT * FROM customers"
@@ -85,6 +100,7 @@ class Customer
       results = customer_data.map { |customer| Customer.new(customer) }
       return results
     end
+
 
 
 

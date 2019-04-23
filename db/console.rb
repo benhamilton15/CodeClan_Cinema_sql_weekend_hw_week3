@@ -29,6 +29,16 @@ film1 = Film.new(
 film1.save()
 
 
+film2 = Film.new(
+  {
+    'title' => 'Overwatch',
+    'price' => '5'
+  }
+)
+
+film2.save()
+
+
 ticket1 = Ticket.new(
   {
     'customer_id' => customer1.id ,
